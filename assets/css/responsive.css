@@ -1,0 +1,142 @@
+/* ==========================================================================
+   SUTRI PAAR — Responsive Layer
+   Breakpoints considered: 320 / 375 / 425 / 768 / 1024 / 1440 / 1920
+   ========================================================================== */
+
+/* ---- Large desktop refinement ---- */
+@media (min-width: 1600px) {
+  .container { max-width: 1400px; }
+}
+
+/* ---- Laptop / small desktop ---- */
+@media (max-width: 1180px) {
+  .pkg-grid { gap: 1.2rem; }
+}
+
+/* ---- Tablet ---- */
+@media (max-width: 1024px) {
+  :root { --header-h: 76px; }
+  .split-grid, .contact-grid { gap: 2.5rem; }
+  .hero h1 { max-width: 16ch; }
+}
+
+/* ---- Mobile navigation breakpoint ---- */
+@media (max-width: 900px) {
+  .nav-toggle { display: flex; }
+
+  .main-nav {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100svh;
+    width: min(340px, 84vw);
+    background: var(--forest-950);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.9rem;
+    padding: 6rem clamp(1.6rem, 6vw, 2.6rem) 2rem;
+    transform: translateX(100%);
+    transition: transform 0.5s var(--ease);
+    z-index: 550;
+  }
+  .main-nav.is-open { transform: translateX(0); }
+  .main-nav a { color: var(--sand-100) !important; font-size: 1.15rem; }
+  .main-nav a.btn { margin-top: 0.6rem; }
+
+  .nav-scrim {
+    position: fixed; inset: 0;
+    background: rgba(16,36,28,0.55);
+    z-index: 540;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.4s var(--ease), visibility 0.4s var(--ease);
+  }
+  .nav-scrim.is-open { opacity: 1; visibility: visible; }
+
+  .site-header.is-transparent .nav-toggle span { background: var(--sand-100); }
+}
+
+/* ---- Tablet content stacking ---- */
+@media (max-width: 860px) {
+  .cta-band { flex-direction: column; align-items: flex-start; text-align: left; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---- 768px: standard tablet ---- */
+@media (max-width: 768px) {
+  h1 { max-width: 100%; }
+  .hero { min-height: max(100svh, 640px); }
+  .hero-content {
+    padding-top: calc(var(--header-h) + 2rem);
+    padding-bottom: 5.75rem;
+  }
+  .hero h1 {
+    max-width: 15ch;
+    font-size: clamp(2.35rem, 11vw, 4.25rem);
+    line-height: 1.08;
+  }
+  .page-hero {
+    min-height: clamp(350px, 58svh, 470px);
+    padding-top: calc(var(--header-h) + 1.5rem);
+    padding-bottom: 2.75rem;
+  }
+  .page-hero h1 {
+    max-width: 16ch;
+    font-size: clamp(2.2rem, 9.5vw, 3.8rem);
+    line-height: 1.1;
+  }
+  .hero-slide-caption { display: none; }
+  .scroll-indicator { display: none; }
+  .pkg-grid, .hotel-grid { grid-template-columns: 1fr 1fr; }
+  .counter-row { gap: 2rem 3rem; }
+}
+
+/* ---- 425px ---- */
+@media (max-width: 425px) {
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; }
+  .section-head { flex-direction: column; align-items: flex-start; }
+  .pkg-grid, .hotel-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .cta-band-actions { width: 100%; }
+  .cta-band-actions .btn { width: 100%; justify-content: center; }
+}
+
+/* ---- 375 / 320px small phones ---- */
+@media (max-width: 375px) {
+  :root { --gutter: 1.1rem; }
+  .btn { padding: 0.85rem 1.5rem; font-size: 0.92rem; }
+  .breadcrumbs { font-size: 0.78rem; }
+  .back-to-top { width: 42px; height: 42px; bottom: 1.1rem; right: 1.1rem; }
+}
+
+/* ---- No horizontal scroll safety net ---- */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video { max-width: 100%; height: auto; }
+
+/* ---- Justified copy causes rivers on narrow screens; go ragged-right ---- */
+@media (max-width: 600px) {
+  .prose p,
+  .prose ul li,
+  .faq-a p,
+  .split-text p,
+  .feature-card p,
+  .exp-item p,
+  .footer-brand p,
+  .pkg-card p,
+  .lightbox-body p,
+  .contact-intro p {
+    text-align: left;
+    hyphens: manual;
+  }
+}
+
+/* ---- In-page anchors were landing behind the fixed header ---- */
+[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+
+/* ---- Long words/URLs must never push the layout sideways ---- */
+p, li, h1, h2, h3, h4, address, .pkg-name, .hotel-name { overflow-wrap: break-word; }
+
+/* ---- Process steps read as a single column on phones ---- */
+@media (max-width: 480px) {
+  .step-grid { grid-template-columns: 1fr; }
+}

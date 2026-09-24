@@ -1,0 +1,64 @@
+/* ==========================================================================
+   SUTRI PAAR — Animation Library
+   All motion prefers transform/opacity for performance.
+   ========================================================================== */
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float-el { animation: floatSlow 6s ease-in-out infinite; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in { animation: fadeIn 0.6s var(--ease) both; }
+
+@keyframes textReveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero h1, .hero .hero-eyebrow, .hero .lede, .hero-actions {
+  animation: textReveal 1s var(--ease) both;
+}
+.hero .hero-eyebrow { animation-delay: 0.05s; }
+.hero h1 { animation-delay: 0.18s; }
+.hero .lede { animation-delay: 0.34s; }
+.hero-actions { animation-delay: 0.5s; }
+
+/* Card elevation micro-interaction handled via transform/box-shadow already in style.css */
+
+/* Ripple for buttons */
+.btn { position: relative; overflow: hidden; }
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.45);
+  transform: scale(0);
+  animation: rippleAnim 0.65s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes rippleAnim {
+  to { transform: scale(3.2); opacity: 0; }
+}
+
+/* Counter number pop */
+@keyframes numberPop {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.counter-num.is-counted { animation: numberPop 0.5s var(--ease) both; }
+
+/* Marquee-style logo/testimonial drift (used sparingly, paused on hover) */
+@keyframes slowPan {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1, .hero .hero-eyebrow, .hero .lede, .hero-actions,
+  .float-el, .fade-in {
+    animation: none !important;
+  }
+}

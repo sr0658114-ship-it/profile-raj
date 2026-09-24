@@ -1,0 +1,5 @@
+# robots.txt — Sutri Paar Tours and Travels
+User-agent: *
+Allow: /
+
+Sitemap: https://www.sutripaar.com/sitemap.xml
